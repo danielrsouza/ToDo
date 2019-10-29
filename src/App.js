@@ -14,10 +14,7 @@ import {
   FlatList,
   TextInput,
   Button,
-  Header,
   SafeAreaView,
-  StatusBar,
-  SwipeView,
   TouchableOpacity
 } from 'react-native';
 import { labeledStatement } from '@babel/types';
@@ -72,7 +69,7 @@ export default class App extends Component {
         } else {
           return todo;
         }
-      })
+      });
     } else {
       itens = [...this.state.itens, new Todo(this.state.text)];
     }
@@ -92,6 +89,7 @@ export default class App extends Component {
     this.setState({
       id: todo.id,
       text: todo.description
+      
     });
   }
 
@@ -100,7 +98,7 @@ export default class App extends Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.header}></View>
         <View style={styles.container}>
-          <FlatList data={this.state.itens} renderItem={({item})=>this.renderItem} keyExtractor={(item, index) =>index.toString()}/>
+          <FlatList data={this.state.itens} renderItem={({item})=>this.renderItem(item)} keyExtractor={(item, index) => index} />
           <View>
             <TextInput
               style={styles.input}
